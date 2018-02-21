@@ -1,0 +1,91 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #ecf0f16b;
+    color: rgba(45, 71, 112, 0.8);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 2px;
+}
+
+hr {
+    border: 1px solid rgba(45, 71, 112, 0.8);
+    outline: none;
+    margin-top: 0;
+    width: 60vw;
+}
+
+
+.form input {
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+    border: unset;
+    border-bottom: 1px solid rgb(45, 70, 112);
+    padding: 20px;
+    color: gray;
+    background: none;
+    width: 70vw;
+    margin-top: 10px;
+    font-size: 1.1em;
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #ecf0f1;
+    margin: 10px 0;
+    padding: 20px;
+    text-align: left;
+    width: 80vw;
+    transition: 0.25s linear;
+    cursor: pointer;
+}
+
+ul li span {
+    float: right;
+    opacity: 0;
+    color: rgb(201, 85, 85);
+    transition: 0.25s linear;
+    cursor: pointer;
+}
+
+ul li span:hover {
+    color: red;
+    transform: scale(1.5,1.5);
+}
+
+.done {
+    text-decoration: line-through;
+    color:rgba(45, 71, 112, 0.4);
+}
+
+ul li:hover {
+    background-color: #d7dee0;
+    transform: scale(1.02,1.02);
+}
+
+ul li:active {
+    transform: scale(0.95,0.95);
+}
+
+ul li:hover span {
+    opacity: 1;
+}
+
+.error {
+    background-color: rgb(201, 85, 85);
+    padding: 10px;
+    color: #e8edee;
+}
