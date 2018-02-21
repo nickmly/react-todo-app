@@ -20,6 +20,6 @@ app.get("/", function(req,res) {
 app.use("/api/todos", todoRoutes); // use todoRoutes but start each route with /api/todos
 
 // Start server on port 3000 and local IP
-app.listen(3000, process.env.IP, function() {
+app.listen(3000 || process.env.PORT, process.env.IP, function() {
     console.log("Server started");
 });
