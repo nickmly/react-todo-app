@@ -1,17 +1,31 @@
 import React, {Component} from 'react';
 import TodoItem from './TodoItem';
+import TodoForm from './TodoForm';
 const APIURL = '/api/todos';
 
 class TodoList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            todos: []
-        }        
+            todos: [],
+            newTodo: ""
+        }
+        this.handleTodoInputChange = this.handleTodoInputChange.bind(this);
+        this.addTodo = this.addTodo.bind(this);
     }
 
     componentWillMount() {
         this.loadTodos();
+    }
+
+    addTodo(e) {
+        e.preventDefault();        
+        alert("Added new todo: " + this.state.newTodo);
+    }
+
+    handleTodoInputChange(e){
+        e.preventDefault();
+        this.setState({newTodo: e.target.value});
     }
 
     loadTodos() {
@@ -39,7 +53,7 @@ class TodoList extends Component {
         });
     }
 
-    render() {
+    render() {        
         // Create array of list items from the todo array
         var rows = this.state.todos.map(function(todo){
             return <TodoItem key={todo._id} {...todo}/>;
@@ -47,6 +61,7 @@ class TodoList extends Component {
         return (
             <div className="todo-list">
                 <h1>todo list</h1>
+                <TodoForm addTodo={this.addTodo} handleTodoInputChange={this.handleTodoInputChange}/>
                 <ul>
                     {rows}
                 </ul>
