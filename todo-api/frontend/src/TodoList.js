@@ -42,7 +42,7 @@ class TodoList extends Component {
     render() {
         // Create array of list items from the todo array
         var rows = this.state.todos.map(function(todo){
-            return <TodoItem key={todo._id} name={todo.name} completed={todo.completed}/>;
+            return <TodoItem key={todo._id} {...todo}/>;
         });
         return (
             <div className="todo-list">
