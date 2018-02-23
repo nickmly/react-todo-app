@@ -30,9 +30,10 @@ class TodoList extends Component {
             body: JSON.stringify(data)
         })
         .then(function(res){
-            console.log(res);
-            alert("Added new todo: " + res.json());
-        }).catch(function(error){
+            return res.json();
+        }).then(function(todo){
+            this.setState({todos: [...this.state.todos,todo]});
+        }.bind(this)).catch(function(error){
             console.log(error);
         });
 
@@ -43,6 +44,15 @@ class TodoList extends Component {
         e.preventDefault();
         //Set newTodo state to the input value
         this.setState({newTodo: e.target.value});
+    }
+
+    onTodoClick(id) {      
+        var todos = this.state.todos;
+        var todoIndex = todos.map(function(element){
+            return element._id;
+        }).indexOf(id);
+        todos[todoIndex].completed = !todos[todoIndex].completed;
+        this.setState({todos});
     }
 
     loadTodos() {
@@ -73,8 +83,8 @@ class TodoList extends Component {
     render() {        
         // Create array of list items from the todo array
         var rows = this.state.todos.map(function(todo){
-            return <TodoItem key={todo._id} {...todo}/>;
-        });
+            return <TodoItem onClick={() => this.onTodoClick(todo._id)} key={todo._id} {...todo}/>;
+        }, this);
         return (
             <div className="todo-list">
                 <h1>todo list</h1>
