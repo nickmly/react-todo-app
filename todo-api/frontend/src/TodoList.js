@@ -19,12 +19,29 @@ class TodoList extends Component {
     }
 
     addTodo(e) {
-        e.preventDefault();        
-        alert("Added new todo: " + this.state.newTodo);
+        e.preventDefault();
+        var data = {
+            name: this.state.newTodo
+        };
+        console
+        fetch(APIURL, {
+            method: 'post',
+            headers: new Headers({'Content-Type': 'application/json'}),
+            body: JSON.stringify(data)
+        })
+        .then(function(res){
+            console.log(res);
+            alert("Added new todo: " + res.json());
+        }).catch(function(error){
+            console.log(error);
+        });
+
+         
     }
 
     handleTodoInputChange(e){
         e.preventDefault();
+        //Set newTodo state to the input value
         this.setState({newTodo: e.target.value});
     }
 
