@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 mongoose.set('debug', true);
-mongoose.connect("mongodb://localhost/todo-api");
+mongoose.connect(process.env.TODODBURL);
 
 mongoose.Promise = Promise; // Allow us to use promise syntax onto mongo functions
 
