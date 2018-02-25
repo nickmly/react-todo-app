@@ -12,6 +12,9 @@ class TodoList extends Component {
         }
         this.handleTodoInputChange = this.handleTodoInputChange.bind(this);
         this.addTodo = this.addTodo.bind(this);
+        this.getTodoIndex = this.getTodoIndex.bind(this);
+        this.onRemoveTodo = this.onRemoveTodo.bind(this);
+        this.loadTodos = this.loadTodos.bind(this);
     }
 
     componentWillMount() {
@@ -35,9 +38,7 @@ class TodoList extends Component {
             this.setState({todos: [...this.state.todos,todo]});
         }.bind(this)).catch(function(error){
             console.log(error);
-        });
-
-         
+        });         
     }
 
     handleTodoInputChange(e){
@@ -46,13 +47,34 @@ class TodoList extends Component {
         this.setState({newTodo: e.target.value});
     }
 
-    onTodoClick(id) {      
+    getTodoIndex(id) {
         var todos = this.state.todos;
-        var todoIndex = todos.map(function(element){
+        // Find todo element's index with id
+        return todos.map(function(element){
             return element._id;
-        }).indexOf(id);
+        }).indexOf(id);        
+    }
+
+    onTodoClick(id) {
+        var todos = this.state.todos;
+        var todoIndex = this.getTodoIndex(id);
         todos[todoIndex].completed = !todos[todoIndex].completed;
         this.setState({todos});
+    }
+
+    onRemoveTodo(id) {
+        var todoIndex = this.getTodoIndex(id);
+        
+        fetch(APIURL + '/' + id, {
+            method: 'delete',
+            headers: new Headers({'Content-Type': 'application/json'})
+        })
+        .then(function(res){
+            this.loadTodos();
+        }.bind(this))
+        .catch(function(error){
+            console.log(error);
+        });
     }
 
     loadTodos() {
@@ -83,7 +105,10 @@ class TodoList extends Component {
     render() {        
         // Create array of list items from the todo array
         var rows = this.state.todos.map(function(todo){
-            return <TodoItem onClick={() => this.onTodoClick(todo._id)} key={todo._id} {...todo}/>;
+            return <TodoItem 
+                onClick={() => this.onTodoClick(todo._id)} 
+                onRemove={() => this.onRemoveTodo(todo._id)} 
+                key={todo._id} {...todo}/>;
         }, this);
         return (
             <div className="todo-list">
