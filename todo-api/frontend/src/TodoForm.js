@@ -9,7 +9,7 @@ class TodoForm extends Component {
         return (
             <form onSubmit={addTodo}>
                 <input onChange={handleTodoInputChange} type="text"/>
-                <button>Add</button>
+                <button><i class="fas fa-plus-circle"></i></button>
             </form>
         );
     }

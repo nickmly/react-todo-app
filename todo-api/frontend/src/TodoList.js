@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import TodoItem from './TodoItem';
 import TodoForm from './TodoForm';
+import './TodoList.css';
 const APIURL = '/api/todos';
 
 class TodoList extends Component {
@@ -10,6 +11,7 @@ class TodoList extends Component {
             todos: [],
             newTodo: ""
         }
+        //Bind all functions using this component as keyword this
         this.handleTodoInputChange = this.handleTodoInputChange.bind(this);
         this.addTodo = this.addTodo.bind(this);
         this.getTodoIndex = this.getTodoIndex.bind(this);
@@ -18,6 +20,7 @@ class TodoList extends Component {
     }
 
     componentWillMount() {
+        // When mounting, load list of todos
         this.loadTodos();
     }
 
@@ -26,7 +29,10 @@ class TodoList extends Component {
         var data = {
             name: this.state.newTodo
         };
-        console
+
+        if(data.name == "")
+            return;
+        //Send post request to api with the name of the new todo        
         fetch(APIURL, {
             method: 'post',
             headers: new Headers({'Content-Type': 'application/json'}),
@@ -56,6 +62,7 @@ class TodoList extends Component {
     }
 
     onTodoClick(id) {
+        // Toggle todo completion
         var todos = this.state.todos;
         var todoIndex = this.getTodoIndex(id);
         todos[todoIndex].completed = !todos[todoIndex].completed;
@@ -63,6 +70,7 @@ class TodoList extends Component {
     }
 
     onRemoveTodo(id) {
+        // Remove todo and reload all todos
         var todoIndex = this.getTodoIndex(id);
         
         fetch(APIURL + '/' + id, {

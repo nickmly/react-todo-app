@@ -1,0 +1,25 @@
+li {
+    text-align: center;
+    padding: 15px;
+    background-color: #37385428;
+    margin: 5px auto;    
+    width: 60vw;
+    cursor: pointer;
+    transition: 0.15s linear;
+}
+
+li:hover {
+    transform: scale(1.1,1.1);
+}
+
+li i {
+    float: right;  
+    margin: 2px 0;
+    color: red;
+    opacity: 0.7;
+}
+
+li i:hover {
+    opacity: 1;
+    transform: scale(1.1,1.1);
+}
