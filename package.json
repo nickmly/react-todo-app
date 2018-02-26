@@ -9,19 +9,19 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-	"start": "node index.js",
-	"heroku-postbuild": "cd frontend/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "start": "node index.js",
+    "heroku-postbuild": "cd frontend/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
   "author": "Nick Mallory",
   "license": "ISC",
   "cacheDirectories": [
-	"node_modules",
-	"frontend/node_modules"
-	],
+    "node_modules",
+    "frontend/node_modules"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/nickmly/react-todo-app.git"
-	},
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.2",

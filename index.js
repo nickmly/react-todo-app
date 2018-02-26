@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 //
 
-app.use('/static',express.static(path.join(__dirname,'/frontend/build'))); // use react build directory
+app.use(express.static(path.join(__dirname,'/frontend/build'))); // use react build directory
 app.use(express.static(__dirname + '/frontend/public')); // use public directory
 // app.use(express.static(__dirname + "/views")); // use views directory
 
