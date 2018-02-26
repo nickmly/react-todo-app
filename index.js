@@ -7,6 +7,8 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 //
+
+app.use(express.static(__dirname + '/frontend/')); // use react build directory
 app.use(express.static(__dirname + '/frontend/public')); // use public directory
 // app.use(express.static(__dirname + "/views")); // use views directory
 
@@ -16,7 +18,7 @@ var todoRoutes = require('./routes/todo');
 app.use('/api/todos', todoRoutes); // use todoRoutes but start each route with /api/todos
 
 app.get('*', function(req,res) {  
-    res.sendFile(__dirname + '/frontend/build/index.html');
+    res.sendFile(path.join(__dirname, 'frontend/build', 'index.html'));
 });
 
 // Start server on port 8080 and local IP
