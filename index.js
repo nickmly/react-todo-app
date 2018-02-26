@@ -7,19 +7,19 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 //
-app.use(express.static(__dirname + "/public")); // use public directory
-app.use(express.static(__dirname + "/views")); // use views directory
+app.use(express.static(__dirname + '/frontend/public')); // use public directory
+// app.use(express.static(__dirname + "/views")); // use views directory
 
 var models = require('./models');
 var todoRoutes = require('./routes/todo');
 
-app.get("/", function(req,res) {    
-    res.send("Root route");
+app.get("*", function(req,res) {    
+    res.sendFile(path.resolve(__dirname, '/frontend/build', 'index.html'));
 });
 
-app.use("/api/todos", todoRoutes); // use todoRoutes but start each route with /api/todos
+app.use('/api/todos', todoRoutes); // use todoRoutes but start each route with /api/todos
 
 // Start server on port 8080 and local IP
 app.listen(process.env.PORT || 8080, process.env.IP, function() {
-    console.log("Server started");
+    console.log('Server started');
 });
