@@ -1,6 +1,7 @@
 var express = require('express'),
     mongoose = require('mongoose'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    path = require('path');
 var app = express();
 
 // Use body parser
