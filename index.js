@@ -19,7 +19,7 @@ app.get('*', function(req,res) {
     res.sendFile(__dirname + '/frontend/build/index.html');
 });
 
-// Start server on port 5000 and local IP
-app.listen(process.env.PORT || 5000, process.env.IP, function() {
+// Start server on port 8080 and local IP
+app.listen(process.env.PORT || 8080, process.env.IP, function() {
     console.log('Server started');
 });
