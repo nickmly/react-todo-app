@@ -62,11 +62,24 @@ class TodoList extends Component {
     }
 
     onTodoClick(id) {
-        // Toggle todo completion
-        var todos = this.state.todos;
+        // Toggle todo completion and reload all todos
         var todoIndex = this.getTodoIndex(id);
-        todos[todoIndex].completed = !todos[todoIndex].completed;
-        this.setState({todos});
+        var todo = this.state.todos[todoIndex];
+        var data = {
+            completed: !todo.completed
+        };
+        
+        fetch(APIURL + '/' + id, {
+            method: 'put',
+            headers: new Headers({'Content-Type': 'application/json'}),
+            body: JSON.stringify(data)
+        })
+        .then(function(res){
+            this.loadTodos();
+        }.bind(this))
+        .catch(function(error){
+            console.log(error);
+        });
     }
 
     onRemoveTodo(id) {
