@@ -6,6 +6,7 @@ li {
     width: 60vw;
     cursor: pointer;
     transition: 0.15s linear;
+    min-width: 200px;
 }
 
 li:hover {

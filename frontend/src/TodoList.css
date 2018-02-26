@@ -33,6 +33,7 @@ button {
     box-shadow: 2px 2px 2px #37385481;
     background-color: #373854;
     color: white;
+    min-width: 50px;
 }
 
 button i {
