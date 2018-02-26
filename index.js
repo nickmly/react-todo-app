@@ -15,8 +15,8 @@ var todoRoutes = require('./routes/todo');
 
 app.use('/api/todos', todoRoutes); // use todoRoutes but start each route with /api/todos
 
-app.get("/", function(req,res) {    
-    res.send("Root route");
+app.get("*", function(req,res) {    
+    res.sendFile(path.resolve(__dirname, '/frontend/build', 'index.html'));
 });
 
 // Start server on port 5000 and local IP
